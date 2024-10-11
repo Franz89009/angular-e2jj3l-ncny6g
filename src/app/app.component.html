@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>About Me</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="togglePage()">
+        <ion-icon name="moon-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Cover Photo and Avatar Section -->
+  <div
+    class="cover-photo"
+    [ngStyle]="{ 'background-image': 'url(' + coverPhotoUrl + ')' }"
+  >
+    <ion-avatar class="profile-avatar">
+      <img [src]="" alt="Francis Mateo" />
+      <input
+        type="text"
+        class="note-input"
+        [(ngModel)]="note"
+        placeholder="Share a thought..."
+      />
+    </ion-avatar>
+
+    <div class="profile-stats">
+      <div class="stat" *ngFor="let stat of stats">
+        <strong>{{ stat.label }}</strong>
+        <span>{{ stat.value }}</span>
+      </div>
+    </div>
+  </div>
+
+  <ion-card class="profile-card">
+    <ion-card-header>
+      <ion-card-title>{{ name }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ designation }}</p>
+
+      <ion-list>
+        <ion-item *ngFor="let info of personalInfo">
+          <div class="icon-box">
+            <ion-icon [name]="info.icon" slot="start"></ion-icon>
+          </div>
+          <ion-label>{{ info.label }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <div class="stories-section">
+        <h2 class="stories-header">My Stories</h2>
+        <div class="stories-container">
+          <div class="story" *ngFor="let story of stories">
+            <img class="story-image" [src]="story.image" alt="Story" />
+          </div>
+        </div>
+      </div>
+
+      <div class="hobbies-section">
+        <h3 class="hobbies-header"><strong>Hobbies & Interests</strong></h3>
+        <ion-list>
+          <ion-item *ngFor="let hobby of hobbies">
+            <div class="icon-box">
+              <ion-icon [name]="hobby.icon" slot="start"></ion-icon>
+            </div>
+            <ion-label>{{ hobby.label }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <div class="skills-section">
+        <h3 class="skills-header"><strong>Skills</strong></h3>
+        <ion-list>
+          <ion-item *ngFor="let skill of skills">
+            <div class="icon-box">
+              <ion-icon [name]="skill.icon" slot="start"></ion-icon>
+            </div>
+            <ion-label>{{ skill.label }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-footer>
+    <ion-toolbar>
+      <div class="footer-text">
+        <p>{{ footerText }}</p>
+        <!-- fixed interpolation issue -->
+      </div>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>
